@@ -18,6 +18,7 @@ const io = require('socket.io')(server, {
 
 // Importar rutas
 const userRoutes = require('./router/userRouter');
+const messageRoutes = require('./router/messageRouter');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
 // Exponer rutas
 const basePath = `/${API_NAME}/${API_VERSION}`;
 app.use(basePath, userRoutes);
+app.use(basePath, messageRoutes);
 
 
 io.on('connect', (socket) => {

@@ -8,7 +8,7 @@ module.exports = {
         con.query(`SELECT * FROM users where id = ${id}`, callback);
     },
 
-    getById: (con, email, callback) => {
+    getByEmail: (con, email, callback) => {
         con.query(`SELECT * FROM users where email = '${email}'`, callback);
     },
 

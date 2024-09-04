@@ -8,5 +8,6 @@ const app = express.Router();
 
 app.get('/users', userController.index);
 app.post('/users', mdUserImg, userController.store);
+app.post('/users/login', userController.login);
 
 module.exports = app;
