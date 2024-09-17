@@ -38,9 +38,13 @@ app.use(basePath, messageRoutes);
 
 
 io.on('connect', (socket) => {
+    socket.on('typing', (data) => {
+        io.emit('listening', data);
+    });
+
     socket.on('disconnect', () => {
         console.log('Usuario no conectado');
-    })
+    });
 });
 
 module.exports = server;

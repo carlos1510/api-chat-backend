@@ -1,7 +1,7 @@
 
 module.exports = {
     get: (con, callback) => {
-        con.query('SELECT * FROM messages', callback);
+        con.query('SELECT a.id, a.userId, a.content, a.date, b.firstName, b.lastName FROM messages a INNER JOIN users b ON a.userId=b.id ORDER BY a.id ASC', callback);
     },
     
     getById: (con, id, callback) => {

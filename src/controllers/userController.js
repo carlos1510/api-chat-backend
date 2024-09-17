@@ -21,7 +21,7 @@ module.exports = {
         }
         User.create(req.con, req.body, (error, row) => {
             if(error) {
-                unlinkFile(req.body.img);
+                if (req.body.img) unlinkFile(req.body.img);
                 res.status(500).send({response: 'Ha ocurrido un error creando el usuario'})
             }else {
                 res.status(200).send({response: row});
@@ -44,8 +44,10 @@ module.exports = {
                     if (!userData.active) return res.status(401).send({ response: 'Usuario inactivo' });
                     delete userData.password;
                     res.status(200).send({
-                        token: createAccessToken(userData),
-                        refresh: createRefreshToken(userData)
+                        response: {
+                            token: createAccessToken(userData),
+                            refresh: createRefreshToken(userData)
+                        }
                     });
                 })
             } 
